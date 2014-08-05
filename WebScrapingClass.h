@@ -8,20 +8,20 @@
 
 @interface WebScrapingClass : NSObject;
 
-+(NSString *)returnsContentPageFrom:(NSString *)link;
++(NSString *)returnsContentPageFrom :(NSString *)link;
 
-+(NSString *)returnsContent :(NSString *)content From:(NSString *)here To:(NSString *)there;
++(NSString *)returnsContent :(NSString *)content From :(NSString *)here To :(NSString *)there;
 
-+(NSString *)returnsContentFromTheBeginning:(NSString *)content To:(NSString *)there;
++(NSString *)returnsContentFromTheBeginning :(NSString *)content To :(NSString *)there;
 
-+(NSString *)returnsContent:(NSString *)content After:(NSString *)here;
++(NSString *)returnsContent :(NSString *)content After :(NSString *)here;
 
-+(NSString*)returnsContent:(NSString *)content From:(NSString *)here To:(NSString *)there startingAfter:(NSString *)jumpingWord;
++(NSString*)returnsContent :(NSString *)content From:(NSString *)here To :(NSString *)there startingAfter :(NSString *)jumpingWord;
 
-+(NSString *)returnsUpdatedContent:(NSString **)content From:(NSString *)here To:(NSString *)there;
++(NSString *)returnsUpdatedContent :(NSString **)content From :(NSString *)here To :(NSString *)there;
 
-+(NSString*)returnsUpdatedContent:(NSString **)content From:(NSString *)here To:(NSString*)there Jumping:(NSString *)jumpingWord;
++(NSString*)returnsUpdatedContent :(NSString **)content From :(NSString *)here To :(NSString*)there Jumping :(NSString *)jumpingWord;
 
-+(NSString *)removeHtmlTags:(NSString *)content;
++(NSString *)removeHtmlTags :(NSString *)content;
 
 @end
