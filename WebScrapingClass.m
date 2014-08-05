@@ -12,27 +12,27 @@
 @implementation WebScrapingClass
 
 
-+(NSString *)returnsContentPageFrom:(NSString *)link{
++(NSString *)returnsContentPageFrom :(NSString *)link{
     
     //this is a simple method that returns a NSString with webpage content.
     //You can modifify this method using NSURLConnection if you need to do POST requests.
     
     NSData *d;
-    if ((d = [NSData dataWithContentsOfURL:[NSURL URLWithString: link]])){
-        return [[NSString alloc] initWithData:d encoding: NSASCIIStringEncoding];
+    if ((d = [NSData dataWithContentsOfURL :[NSURL URLWithString :link]])){
+        return [[NSString alloc] initWithData :d encoding :NSASCIIStringEncoding];
     }
     else
         return nil;
 }
 
-+(NSString *)returnsContent :(NSString *)content From:(NSString *)here To:(NSString *)there {
++(NSString *)returnsContent :(NSString *)content From :(NSString *)here To :(NSString *)there {
     
-    NSRange f = [content rangeOfString:here];
+    NSRange f = [content rangeOfString :here];
     if (f.location != NSNotFound){
-        content = [content substringFromIndex:f.location+f.length];
-        f = [content rangeOfString:there];
+        content = [content substringFromIndex :f.location+f.length];
+        f = [content rangeOfString :there];
         if (f.location != NSNotFound){
-            content= [content substringToIndex:f.location];
+            content= [content substringToIndex :f.location];
             return content;
         }
         else
@@ -43,11 +43,11 @@
 }
 
 
-+(NSString *)returnsContentFromTheBeginning:(NSString *)content To:(NSString *)there{
++(NSString *)returnsContentFromTheBeginning :(NSString *)content To :(NSString *)there{
     
-    NSRange f = [content rangeOfString:there];
+    NSRange f = [content rangeOfString :there];
     if (f.location != NSNotFound){
-        content = [content substringToIndex:f.location];
+        content = [content substringToIndex :f.location];
         return content;
     }
     else
@@ -55,7 +55,7 @@
 }
 
 
-+(NSString *)returnsContent:(NSString *)content After:(NSString *)here{
++(NSString *)returnsContent :(NSString *)content After :(NSString *)here{
     
     NSRange f = [content rangeOfString:here];
     if (f.location != NSNotFound){
@@ -67,17 +67,17 @@
 }
 
 
-+(NSString*)returnsContent:(NSString *)content From:(NSString *)here To:(NSString *)there startingAfter:(NSString *)jumpingWord{
++(NSString*)returnsContent:(NSString *)content From :(NSString *)here To :(NSString *)there startingAfter :(NSString *)jumpingWord{
     
-    content = [self returnsContent:content After:jumpingWord];
+    content = [self returnsContent :content After :jumpingWord];
     if (content == nil)
         return nil;
 
-    content = [self returnsContent:content After:here];
+    content = [self returnsContent :content After :here];
     if (content == nil)
         return nil;
     
-    content = [self returnsContentFromTheBeginning:content To:there];
+    content = [self returnsContentFromTheBeginning :content To :there];
     if (content == nil)
         return nil;
     
@@ -85,10 +85,10 @@
 }
 
 
-+(NSString *)returnsUpdatedContent:(NSString **)content From:(NSString *)here To:(NSString *)there {
++(NSString *)returnsUpdatedContent :(NSString **)content From :(NSString *)here To :(NSString *)there {
     
     NSString *cuttedContent;
-    cuttedContent = [self returnsContent:*content After:here];
+    cuttedContent = [self returnsContent :*content After :here];
     
 
     if (cuttedContent == nil){
@@ -99,53 +99,53 @@
     
     *content = cuttedContent;
     
-    cuttedContent = [self returnsContentFromTheBeginning:*content To:there];
+    cuttedContent = [self returnsContentFromTheBeginning :*content To :there];
     if (cuttedContent == nil)
         return nil;
     
-    NSRange f = [*content rangeOfString:there];
+    NSRange f = [*content rangeOfString :there];
     if (f.location != NSNotFound){
-        *content = [*content substringFromIndex:f.location+f.length];
+        *content = [*content substringFromIndex :f.location+f.length];
     }
     
     return cuttedContent;
 }
 
 
-+(NSString*)returnsUpdatedContent:(NSString **)content From:(NSString *)here To:(NSString*)there Jumping:(NSString *)jumpingWord{
++(NSString*)returnsUpdatedContent:(NSString **)content From :(NSString *)here To :(NSString*)there Jumping :(NSString *)jumpingWord{
     
-    NSString *cuttedContent = [self returnsContent:*content After:jumpingWord];
+    NSString *cuttedContent = [self returnsContent :*content After :jumpingWord];
     if (cuttedContent == nil)
         return nil;
     
     *content = cuttedContent;
     
-    cuttedContent = [self returnsContent:*content After:here];
+    cuttedContent = [self returnsContent :*content After :here];
     if (cuttedContent == nil)
         return nil;
     
     *content = cuttedContent;
     
-    cuttedContent =    [self returnsContentFromTheBeginning:*content To:there];
+    cuttedContent =    [self returnsContentFromTheBeginning :*content To :there];
     
     if (cuttedContent == nil)
         return nil;
     
     
-    NSRange f = [*content rangeOfString:there];
+    NSRange f = [*content rangeOfString :there];
     if (f.location != NSNotFound){
-        *content = [*content substringFromIndex:f.location+f.length];
+        *content = [*content substringFromIndex :f.location+f.length];
     }
     
     return cuttedContent;
 }
 
 
-+(NSString *)removeHtmlTags:(NSString *)content{
++(NSString *)removeHtmlTags :(NSString *)content{
     
     NSRange range;
-    while ((range = [content rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
-        content = [content stringByReplacingCharactersInRange:range withString:@""];
+    while ((range = [content rangeOfString:@"<[^>]+>" options :NSRegularExpressionSearch]).location != NSNotFound)
+        content = [content stringByReplacingCharactersInRange :range withString :@""];
     
     return content;
 }
